@@ -1,0 +1,7 @@
+Us-cases:
+	- Oberfläche um Docker conatainer zusammen zustellen ink. extensions
+		- Extensions aus Repo
+		--> generiert Docker Compose file
+		--> einfacher weg wie man als dau user ein smw starten kann
+		
+	- * dump-file einspielen
