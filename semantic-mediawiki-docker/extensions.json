@@ -1,0 +1,12 @@
+{
+  "extensions" : [
+    {
+      "name" : "VisualEditor",
+      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VisualEditor.git"
+    },
+    {
+      "name" : "AjaxLogin",
+      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AjaxLogin.git"
+    }
+  ]
+}

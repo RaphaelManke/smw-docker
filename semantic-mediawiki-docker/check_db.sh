@@ -26,7 +26,39 @@ function main {
     fi
 
 }
-dir="$pwd"
-#sleep 1
-main
+
+function install_smw {
+    echo 'require_once "$IP/extensions/SemanticMediaWiki/SemanticMediaWiki.php";' >> LocalSettings.php
+    echo "enableSemantics( 'example.org' );" >> LocalSettings.php
+    php "maintenance/update.php"
+    #php composer.phar require mediawiki/semantic-media-wiki "~2.5" --update-no-dev
+}
+
+function install_extensions {
+    # TODO Pfad richtig weitergeben
+    sh install_extensions.sh "$dir/install_extensions.json"
+}
+
+
+dir="${pwd}"
+echo "try to ping Database"
+echo $dir
+
+UNREACHEABLE=1;
+while [ $UNREACHEABLE -ne "0" ];
+   #do ping -q -c 1 database &> /dev/null; UNREACHEABLE=$?; echo "try again"; sleep 1;
+   do
+    #main ;
+    UNREACHEABLE=$?;
+    echo "try again";
+    sleep 1;
+done
+# TODO write script to install/add media_wiki
+#install_smw
+#  TODO write script for installing extensions
+install_extensions
+
+#main
+echo $?
 cd "$dir"
+echo $pwd

@@ -5,8 +5,8 @@
 version: '3'
 services:
   mediawiki:
-    #image: local/mediawiki
-    image: mediawiki
+    image: local/mediawiki
+    #image: mediawiki
     restart: always
     ports:
       - 8080:80
@@ -18,10 +18,12 @@ services:
       # this yaml and uncomment the following line and use compose to restart
       # the mediawiki service
       #- ./LocalSettings.php:/var/www/html/LocalSettings.php
-      #- ./SemanticMediaWiki:/var/www/html/extensions/SemanticMediaWiki
+      # - ./SemanticMediaWiki:/var/www/html/extensions/SemanticMediaWiki
       - ./semantic-mediawiki-docker/check_db.sh:/var/www/html/check_db.sh
+      - ./semantic-mediawiki-docker/extensions.json:/var/www/html/extensions.json
+      - ./semantic-mediawiki-docker/scripts/install_extensions.sh:/var/www/html/install_extensions.sh
     #command: /var/www/html/check_db.sh && tail -f /dev/null
-    command: bash -c "/var/www/html/check_db.sh && apache2-foreground"
+    #command: bash -c "/var/www/html/check_db.sh && apache2-foreground"
     depends_on:
       - database
   database:
