@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpService} from '../http.service';
-import {HttpClient} from '@angular/common/http';
-
-interface ItemsResponse {
-  results: string[];
-}
+import {Observable} from 'rxjs/Observable';
+import {Extension} from '../extension';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +15,15 @@ export class AppComponent implements OnInit {
   title = 'app';
   protected hide = true;
 
+  observableExtensions: Observable<Extension[]>;
+  extensions: Extension[];
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  errorString: string;
 
-  results: string[] = new Array();
-
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-  }
+  constructor(private formBuilder: FormBuilder,
+              private httpService: HttpService) {}
 
   ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({
@@ -34,27 +33,11 @@ export class AppComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
 
-    const url = 'https://api.github.com/repos/wikimedia/mediawiki-extensions/contents/.gitmodules';
+    this.observableExtensions = this.httpService.getExtensions();
+    this.observableExtensions.subscribe(
+      extensions => this.extensions = extensions,
+      error => this.errorString = <any>error);
 
-    this.http.get<ItemsResponse>(url).subscribe(data => {
-      // data is now an instance of type ItemsResponse, so you can do this:
-      this.results = data.results;
-      console.log(this.results);
-    });
-
-    console.log(this.results);
+    console.log(this.extensions);
   }
 }
-
-interface ItemResponse {
-  result: string[];
-}
-
-/*
-
-, (key, value) => {
-        if (typeof value === 'content') {
-          return value;
-        }
-      });
- */

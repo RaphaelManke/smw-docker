@@ -17,11 +17,11 @@ export class HttpService {
     return this.http.get(this.url)
       .map(this.extractData)
       .catch(this.handleError);
-
   }
 
   private extractData(res: Response) {
     let data = res.json();
+    console.log(data);
     return data;
   }
 

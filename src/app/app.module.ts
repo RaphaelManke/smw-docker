@@ -30,7 +30,7 @@ import {HttpService} from './http.service';
     MatExpansionModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
