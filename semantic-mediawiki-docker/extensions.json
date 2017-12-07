@@ -1,12 +1,19 @@
 {
   "extensions" : [
     {
-      "name" : "VisualEditor",
-      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VisualEditor.git"
+      "name" : "OOJsUIAjaxLogin",
+      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/OOJsUIAjaxLogin.git",
+      "help" : "https://www.mediawiki.org/wiki/Extension:OOJsUIAjaxLogin"
     },
     {
-      "name" : "AjaxLogin",
-      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AjaxLogin.git"
+      "name" : "Babel",
+      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Babel.git",
+      "help" : "https://www.mediawiki.org/wiki/Extension:Babel"
+    },
+    {
+      "name" : "AdvancedSearch",
+      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AdvancedSearch.git",
+      "help" : "https://www.mediawiki.org/wiki/Extension:AdvancedSearch"
     }
   ]
 }
