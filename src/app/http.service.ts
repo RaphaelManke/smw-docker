@@ -9,24 +9,20 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class HttpService {
 
-  url = '//github.com/wikimedia/mediawiki-extensions/blob/master/.gitmodules';
+  // url = '//github.com/wikimedia/mediawiki-extensions/blob/master/.gitmodules';
+  url = '//api.github.com/repos/wikimedia/mediawiki-extensions/contents/.gitmodules'
 
   constructor (private http: HttpClient) {}
 
-  getExtensions(): Observable<Extension[]> {
-    return this.http.get(this.url)
-      .map(this.extractData)
+  getExtensions(): Promise<Extension[]> {
+    return this.http.get(this.url).toPromise()
+      .then()
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    let data = res.json();
-    console.log(data);
-    return data;
-  }
 
   private handleError (error: Response | any) {
     console.error(error.message || error);
-    return Observable.throw(error.message || error);
+    return Promise.reject(error.message || error);
   }
 }

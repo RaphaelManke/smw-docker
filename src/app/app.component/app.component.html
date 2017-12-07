@@ -2,9 +2,7 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Choose your MediaWiki version" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <button mat-button (click)=saveFile()>Save</button>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
@@ -15,6 +13,11 @@
       <ng-template matStepLabel>extensions</ng-template>
       <mat-form-field>
         <input matInput placeholder="Add your extensions" formControlName="secondCtrl" required>
+        <!-- <mat-selection-list #extensions>
+          <mat-list-option *ngFor="let extension of extensions">
+            {{extension}}
+          </mat-list-option>
+        </mat-selection-list> -->
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -24,7 +27,15 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>user</ng-template>
-    Please enter a username and password
+    <div fxLayout="column" fxLayoutAlign="space-evenly start" >
+      <mat-form-field>
+        <input matInput placeholder="username" [(ngModel)]="username">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+    </div>
     <div>
       <button mat-button matStepperPrevious>Back</button>
     </div>
