@@ -89,12 +89,12 @@ function ping_db {
     echo "try to ping Database"
     UNREACHEABLE=1
     UNREACHEABLE_COUNTER=0
-    while [ $UNREACHEABLE -ne "0" ];
+    while [ $UNREACHEABLE -ne "0" ]
        #do ping -q -c 1 database &> /dev/null; UNREACHEABLE=$?; echo "try again"; sleep 1;
        do
         #main ;
         UNREACHEABLE=$?;
-        echo "database not available or not ready. try again";
+        echo "database not available or not ready. try again"
         UNREACHEABLE_COUNTER+=1
         if [ "$UNREACHEABLE_COUNTER" -gt "20" ]
         then
@@ -102,10 +102,10 @@ function ping_db {
                      Database seems to be not available"
             exit 2
         fi
-        sleep 1;
-    done
+        sleep 1
+        done
     echo "Database is reachable and respond to ping."
-    sleep 3;
+    sleep 3
 
 }
 

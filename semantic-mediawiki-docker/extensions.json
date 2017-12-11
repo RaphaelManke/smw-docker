@@ -15,5 +15,12 @@
       "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AdvancedSearch.git",
       "help" : "https://www.mediawiki.org/wiki/Extension:AdvancedSearch"
     }
+  ],
+  "skins" : [
+    {
+      "name" : "MediaWikiBootstrap",
+      "url" : "https://github.com/nasirkhan/mediawiki-bootstrap",
+      "help" : "https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap"
+    }
   ]
 }
