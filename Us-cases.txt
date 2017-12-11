@@ -5,3 +5,7 @@ Us-cases:
 		--> einfacher weg wie man als dau user ein smw starten kann
 		
 	- * dump-file einspielen
+
+NODES:
+    - https://github.com/wikimedia --> Skins
+    - https://github.com/wikimedia/mediawiki-skins --> skins

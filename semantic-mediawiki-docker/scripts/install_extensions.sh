@@ -53,6 +53,7 @@ function main {
     then
         NAMES=($(jq -r '.skins[].name' "$file"))
         URLS=($(jq -r '.skins[].url' "$file"))
+        SKIN_DEFAULT=($(jq -r '.skins[].default' "$file"))
     fi
     # define iter to access matching url for name
     ITER=0
@@ -60,6 +61,7 @@ function main {
     do
         localName="$i"
         localUrl="${URLS[$ITER]}"
+        localDefault="${SKIN_DEFAULT[$ITER]}"
         echo "$localName"
         echo "$ITER"
         echo "$localUrl"
@@ -95,27 +97,36 @@ function main {
         if version_gt "$MEDIAWIKI_MAJOR_VERSION" "1.24"
 
         then
-            echo "Adding new Syntax"
-            if [ "$type" == "extensions" ]
+            # check if old or new version of loading-syntax should be used.
+            if [ "$type" == "extensions" ] && [ -f "$extPath/extension.json" ]
+            # use new syntax
             then
                 searchTerm="wfLoadExtension( '$localName' );"
-            elif [ "$type" == "skins" ]
+
+            elif [ "$type" == "skins" ] && [ -f "$extPath/skin.json" ]
+            # use new syntax
             then
                 searchTerm="wfLoadSkin( '$localName' );"
+
+            else
+            # fallback use old syntax
+                searchTerm="require_once \"\$IP/$type/$localName/$localName.php\";"
             fi
 
         else
-            echo "Adding old Syntax"
+            # old version of mediawiki, therefore use old syntax
             searchTerm="require_once \"\$IP/$type/$localName/$localName.php\";"
         fi
         # check if extension is in localSettings file.
         add_to_file "$searchTerm" "$localSettings" "$localName"
-        if [ "$type" == "skins" ]
+
+        # set skin as default skin
+        if [ "$type" == "skins" ] && [ "$localDefault" -eq "1" ]
             then
-                echo "s/^\$wgDefaultSkin =.*/\$wgDefaultSkin = \"${localName,,}\";/g" "$workDir/$localSettings"
+                echo "Setting $localName as Default Skin because switch is $localDefault "
                 sed -i "s/^\$wgDefaultSkin =.*/\$wgDefaultSkin = \"${localName,,}\";/g" "$workDir/$localSettings"
-                cat "$workDir/$localSettings"
-                ls "$extPath"
+            else
+                echo "$localName is installed but not set as default."
         fi
         ((ITER++))
     done
@@ -131,4 +142,4 @@ localSettings="LocalSettings.php"
 
 main "$jsonFile" "extensions" "$extensionPath"
 
-#main "$jsonFile" "skins" "$skinPath"
+main "$jsonFile" "skins" "$skinPath"

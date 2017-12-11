@@ -18,9 +18,22 @@
   ],
   "skins" : [
     {
+      "name" : "DeskMessMirrored",
+      "url" : "https://github.com/wikimedia/mediawiki-skins-DeskMessMirrored",
+      "help" : "https://www.mediawiki.org/wiki/Skin:DeskMessMirrored",
+      "default" : 0
+    },
+    {
+      "name" : "Gamepress",
+      "url" : "https://gerrit.wikimedia.org/r/mediawiki/skins/Gamepress",
+      "help" : "https://www.mediawiki.org/wiki/Skin:Gamepress",
+      "default" : 1
+    },
+    {
       "name" : "MediaWikiBootstrap",
       "url" : "https://github.com/nasirkhan/mediawiki-bootstrap",
-      "help" : "https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap"
+      "help" : "https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap",
+      "default" : 0
     }
   ]
 }
