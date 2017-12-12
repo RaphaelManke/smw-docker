@@ -1,43 +1,66 @@
-<mat-horizontal-stepper linear>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <button mat-button (click)=saveFile()>Save</button>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>extensions</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Add your extensions" formControlName="secondCtrl" required>
-        <mat-selection-list #shoes>
-          <mat-list-option *ngFor="let shoe of typesOfShoes">
-            {{shoe}}
+<div style="margin-right: 10vh; margin-left: 10vh;" fxLayout="column" fxLayoutAlign="center stretch">
+  <mat-horizontal-stepper [linear]="isLinear">
+
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Select Version</ng-template>
+
+        Currently you can only select the latest version.
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Select Extensions</ng-template>
+
+        <mat-selection-list #extensions>
+          <mat-list-option *ngFor="let extension of typeOfextensions">
+            {{extension}}
           </mat-list-option>
         </mat-selection-list>
-      </mat-form-field>
+        {{extensions.selectedOptions.selected}}
+
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Define User</ng-template>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Enter your username" value="">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Start Mediawiki</ng-template>
+
+      <button mat-button (click)=saveFile(typesOfShoes)>Start Mediawiki</button>
+
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>user</ng-template>
-    <div fxLayout="column" fxLayoutAlign="space-evenly start" >
-      <mat-form-field>
-        <input matInput placeholder="username" [(ngModel)]="username">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Enter your password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
-    </div>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</div>

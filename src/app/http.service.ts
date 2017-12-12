@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 export class HttpService {
 
   // url = '//github.com/wikimedia/mediawiki-extensions/blob/master/.gitmodules';
-  url = '//api.github.com/repos/wikimedia/mediawiki-extensions/contents/.gitmodules'
+  url = '//api.github.com/repos/wikimedia/mediawiki-extensions/contents/.gitmodules';
 
   constructor (private http: HttpClient) {}
 
