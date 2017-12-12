@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, DoCheck {
   thirdFormGroup: FormGroup;
 
   errorString: string;
-
+  path = './app.component/data.txt';
   url = '//raw.githubusercontent.com/wikimedia/mediawiki-extensions/master/.gitmodules';
   data = '';
   content;
@@ -51,23 +51,13 @@ export class AppComponent implements OnInit, DoCheck {
       secondCtrl: ['', Validators.required]
     });
 
-     this.promiseExtensions = this.getAllExtension();
-     this.promiseExtensions.then(
-       
-     )
-
-    console.log(this.data);
+    this.http.get(this.path, {responseType: 'text'})
+      .subscribe(this.data => )
+    console.log(data);
+     this.createTable(data);
 
   }
 
-  async getAllExtension(): Promise<string> {
-    try {
-      return await this.http.get(this.url, {responseType: 'text'}).toPromise();
-    } catch (error) {
-      console.log('something went wrong');
-      return null;
-    }
-  }
 
   createTable(data): void {
     this.content = data.trim().split('[', 3);
