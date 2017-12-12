@@ -13,11 +13,11 @@
       <ng-template matStepLabel>extensions</ng-template>
       <mat-form-field>
         <input matInput placeholder="Add your extensions" formControlName="secondCtrl" required>
-        <!-- <mat-selection-list #extensions>
-          <mat-list-option *ngFor="let extension of extensions">
-            {{extension}}
+        <mat-selection-list #shoes>
+          <mat-list-option *ngFor="let shoe of typesOfShoes">
+            {{shoe}}
           </mat-list-option>
-        </mat-selection-list> -->
+        </mat-selection-list>
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>

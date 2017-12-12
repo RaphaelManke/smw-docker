@@ -16,8 +16,12 @@ import {observable} from 'rxjs/symbol/observable';
 
 export class AppComponent implements OnInit, DoCheck {
 
+  typesOfShoes = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+
   title = 'app';
   protected hide = true;
+
+  extensions: Array<Extension> = new Array(4);
 
 
   isLinear = false;
@@ -25,19 +29,18 @@ export class AppComponent implements OnInit, DoCheck {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  errorString: string;
-  path = './app.component/data.txt';
-  url = '//raw.githubusercontent.com/wikimedia/mediawiki-extensions/master/.gitmodules';
-  data = '';
-  content;
-  extensions: Array<Extension> = new Array<Extension>();
-
-  promiseExtensions: Promise<string>;
 
   @Input() username; password;
 
   constructor(private formBuilder: FormBuilder,
               private http: HttpClient) {
+
+    /*
+    this.extensions[0].name = '3D';
+    this.extensions[0].url = 'https://gerrit.wikimedia.org/r/mediawiki/extensions/3D';
+    this.extensions[1].name = 'AJAXPoll';
+    this.extensions[1].url = 'https://gerrit.wikimedia.org/r/mediawiki/extensions/AJAXPoll';
+    */
   }
 
   ngOnInit() {
@@ -51,25 +54,9 @@ export class AppComponent implements OnInit, DoCheck {
       secondCtrl: ['', Validators.required]
     });
 
-    this.http.get(this.path, {responseType: 'text'})
-      .subscribe(this.data => )
-    console.log(data);
-     this.createTable(data);
-
   }
 
 
-  createTable(data): void {
-    this.content = data.trim().split('[', 3);
-    for (let i = 0; i < this.content.length; i++) {
-      const name_start = this.content[i].indexOf('= ') + 2;
-      const name_end = this.content[i].indexOf('url', name_start + 1) - 1;
-      const url_start = this.content[i].indexOf('= ', name_end) + 2;
-      const url_end = this.content[i].indexOf('branch', url_start + 1) - 1;
-      this.extensions [i].name = this.content[i].substring(name_start, name_end);
-      this.extensions [i].url = this.content[i].substring(url_start, url_end);
-    }
-  }
 
   ngDoCheck() {  }
 
