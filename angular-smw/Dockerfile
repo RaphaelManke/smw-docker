@@ -11,16 +11,16 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 
 # Install dependecies
-RUN npm install
+RUN npm install --silent
 
 # Install prebuild material components
-RUN npm install --save @angular/material @angular/cdk
-RUN npm install --save @angular/animations
-RUN npm install --save hammerjs
+RUN npm install --save @angular/material @angular/cdk --silent
+RUN npm install --save @angular/animations --silent
+RUN npm install --save hammerjs --silent
 
 # Install FileSaver + typescript definitions for it
-RUN npm install file-saver --save
-RUN npm install @types/file-saver --save-dev
+RUN npm install file-saver --save --silent
+RUN npm install @types/file-saver --save-dev --silent
 
 # Get all the code needed to run the app
 COPY . /usr/src/app

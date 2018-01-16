@@ -47,27 +47,22 @@ export class AppComponent implements OnInit {
   private submit(): void {
     const user = '{ "username": "' + this.secondFormGroup.value.username + '", "password": "' + this.secondFormGroup.value.password + '" }';
     let file = '';
-    const list = this.firstFormGroup.value.extension_installer;
 
     for (const i of this.firstFormGroup.value.extension_installer) {
-      const extension = '\n{\n "name" : "' + i + '",\n "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
-      file += extension;
+      file += '\n{\n "name" : "' + i + '",\n "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
     }
 
     for (const i of this.firstFormGroup.value.extension_core) {
-      const extension = '\n{\n "name" : "' + i + '",\n "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
-      file += extension;
+      file += '\n{\n "name" : "' + i + '",\n "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
     }
 
-    let allFile = '{\n "extensions" : [' + file.substring(0, file.length - 1) + '\n]\n}';
-    console.log(allFile);
+    const allFile = '{\n "extensions" : [' + file.substring(0, file.length - 1) + '\n]\n}';
 
     this.save(user, 'user');
-    // TODO anpassen an http get anfrage, wenn diese fertig implementiert ist
-    this.save(this.firstFormGroup.value.extension, 'extensions');
+    this.save(allFile, 'extensions');
   }
 
-  save(toSave, filename): void {
+  private save(toSave, filename): void {
     const file = new File([toSave], filename + '.json', {type: 'text/plain;charset=utf-8'});
     fileSaver.saveAs(file);
   }
