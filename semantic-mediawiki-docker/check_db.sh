@@ -27,6 +27,7 @@ function add_to_file {
 }
 function update_mw {
     php "maintenance/update.php"
+    php composer.phar update --no-dev
 }
 function main {
     echo "$@"
@@ -38,9 +39,10 @@ function main {
 
     else
         INSTALLED="-1"
-        while [ $INSTALLED != 0 ]
+        while [ "$INSTALLED" != 0 ]
         do
             echo "$INDICATOR_FILE file does not exist"
+            # https://www.mediawiki.org/wiki/Manual:Install.php
             php maintenance/install.php \
                 --dbname=my_wiki \
                 --dbserver="database" \

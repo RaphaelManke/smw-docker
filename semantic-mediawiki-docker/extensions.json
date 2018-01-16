@@ -9,11 +9,6 @@
       "name" : "Babel",
       "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Babel.git",
       "help" : "https://www.mediawiki.org/wiki/Extension:Babel"
-    },
-    {
-      "name" : "AdvancedSearch",
-      "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AdvancedSearch.git",
-      "help" : "https://www.mediawiki.org/wiki/Extension:AdvancedSearch"
     }
   ],
   "skins" : [
@@ -21,13 +16,13 @@
       "name" : "DeskMessMirrored",
       "url" : "https://github.com/wikimedia/mediawiki-skins-DeskMessMirrored",
       "help" : "https://www.mediawiki.org/wiki/Skin:DeskMessMirrored",
-      "default" : 0
+      "default" : 1
     },
     {
       "name" : "Gamepress",
       "url" : "https://gerrit.wikimedia.org/r/mediawiki/skins/Gamepress",
       "help" : "https://www.mediawiki.org/wiki/Skin:Gamepress",
-      "default" : 1
+      "default" : 0
     },
     {
       "name" : "MediaWikiBootstrap",

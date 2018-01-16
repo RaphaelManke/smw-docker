@@ -5,7 +5,9 @@
 version: '3'
 services:
   mediawiki:
-    image: local/mediawiki
+    build:
+      context: ./semantic-mediawiki-docker/
+    #image: local/mediawiki
     #image: mediawiki
     restart: always
     ports:
