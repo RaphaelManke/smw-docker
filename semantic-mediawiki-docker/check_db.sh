@@ -44,18 +44,18 @@ function main {
             echo "$INDICATOR_FILE file does not exist"
             # https://www.mediawiki.org/wiki/Manual:Install.php
             php maintenance/install.php \
-                --dbname=my_wiki \
-                --dbserver="database" \
-                --installdbuser=wikiuser \
-                --installdbpass=example \
-                --dbuser=wikiuser \
-                --dbpass=example \
-                --server="http://localhost:8080" \
+                --dbname="$DATABASE_NAME" \
+                --dbserver="$DATABASE_HOSTNAME" \
+                --installdbuser="$DATABASE_USER" \
+                --installdbpass="$DATABASE_PASSWORD" \
+                --dbuser=$SMW_DATABASE_USER \
+                --dbpass=$SMW_DATABASE_PASSWORD \
+                --server="http://localhost:$SMW_HTTP_PORT" \
                 --scriptpath="" \
-                --lang=en \
-                --pass=smw-docker \
-                "Example Semantic Media Wiki" \
-                "Admin"
+                --lang=$SMW_LANGUAGE \
+                --pass=$SMW_ADMIN_PASSWORD \
+                "$SMW_INSTANCE_NAME" \
+                "$SMW_ADMIN_USER"
             INSTALLED=$?
             echo "Installation finished with code $INSTALLED"
             sleep 1
