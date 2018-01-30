@@ -6,9 +6,9 @@ version: '3'
 services:
   mediawiki:
     build:
-      context: ./semantic-mediawiki-docker/
-      args:
-        tag: "1.30"
+      context: ./docker-semantic-mediawiki/
+      #args:
+       # tag: "1.30"
 
     #image: local/mediawiki
     #image: mediawiki
